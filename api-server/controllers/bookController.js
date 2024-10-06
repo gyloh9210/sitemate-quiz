@@ -31,6 +31,10 @@ router.post("/", validate(createBookSchema), async function (req, res) {
 
   return res.json({
     message: "Created successfully",
+    book: {
+      title,
+      description,
+    },
   });
 });
 
@@ -69,6 +73,10 @@ router.put("/:id", validate(updateBookSchema), async function (req, res) {
 
   return res.json({
     message: "Updated successfully",
+    book: {
+      title,
+      description,
+    },
   });
 });
 
