@@ -40,4 +40,19 @@ router.get("/", async function (req, res) {
   });
 });
 
+router.get("/:id", async function (req, res) {
+  const { id } = req.params;
+  const book = books.find((book) => book.id == id);
+
+  if (book) {
+    return res.json({
+      ...book,
+    });
+  }
+
+  return res.status(404).json({
+    message: "Book not found",
+  });
+});
+
 module.exports = router;
