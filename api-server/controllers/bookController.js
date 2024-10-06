@@ -35,9 +35,7 @@ router.post("/", validate(createBookSchema), async function (req, res) {
 });
 
 router.get("/", async function (req, res) {
-  return res.json({
-    books,
-  });
+  return res.json(books);
 });
 
 router.get("/:id", async function (req, res) {
@@ -45,9 +43,7 @@ router.get("/:id", async function (req, res) {
   const book = books.find((book) => book.id == id);
 
   if (book) {
-    return res.json({
-      ...book,
-    });
+    return res.json(book);
   }
 
   return res.status(404).json({
