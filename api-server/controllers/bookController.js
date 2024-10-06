@@ -1,6 +1,6 @@
 const express = require("express");
 const validate = require("../middleware/validate");
-const { createBookSchema } = require("../schema/book");
+const { createBookSchema, updateBookSchema } = require("../schema/book");
 const router = express.Router();
 
 const books = [
@@ -54,5 +54,19 @@ router.get("/:id", async function (req, res) {
     message: "Book not found",
   });
 });
+
+router.put("/:id", validate(updateBookSchema), async function (req, res) {
+  const { title, description } = req.body;
+
+  console.log("PUT books/", {
+    title,
+    description,
+  });
+
+  return res.json({
+    message: "Updated successfully",
+  });
+});
+
 
 module.exports = router;
