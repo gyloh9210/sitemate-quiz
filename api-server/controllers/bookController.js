@@ -52,7 +52,15 @@ router.get("/:id", async function (req, res) {
 });
 
 router.put("/:id", validate(updateBookSchema), async function (req, res) {
+  const { id } = req.params;
   const { title, description } = req.body;
+  const book = books.find((book) => book.id == id);
+
+  if (!book) {
+    return res.status(404).json({
+      message: "Book not found",
+    });
+  }
 
   console.log("PUT books/", {
     title,
