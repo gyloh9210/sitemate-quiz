@@ -11,11 +11,9 @@ app.use(
     extended: true,
   })
 );
-app.get("/", (req, res) => {
-  res.json({ message: "hello" });
-});
 
 app.use("/books", bookController);
-app.listen(port, () => {
-  console.log(`Listening at ${port}`);
-});
+
+app.listen(port);
+
+module.exports = app;
