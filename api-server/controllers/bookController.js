@@ -68,5 +68,19 @@ router.put("/:id", validate(updateBookSchema), async function (req, res) {
   });
 });
 
+router.delete("/:id", async function (req, res) {
+  const { id } = req.params;
+  const book = books.find((book) => book.id == id);
+
+  if (book) {
+    return res.json({
+      message: "Deleted successfully",
+    });
+  }
+
+  return res.status(404).json({
+    message: "Book not found",
+  });
+});
 
 module.exports = router;
